@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="/">
+    <title>Triposse-Stays</title>
+    <link rel='stylesheet' href='js/vendor/bootstrap/dist/css/bootstrap.min.css'/>
+    <link href="https://fonts.googleapis.com/css?family=Catamaran|Crimson+Text|Dosis|Inconsolata|Josefin+Sans|Source+Serif+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Manuale" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/main.min.css'/>
+    <link rel='stylesheet' href='/stylesheets/font.css'/>
+
+    <script src="js/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+    <script src="js/stay.js"></script>
+</head>
+<body>
+  <div class="page-container">
+    <div class="stay-header">
+      <div class="navigation fix-position-top">
+        <div class="navigation-wrapper">
+          <div class="logo">
+            <img src="../images/logo/final2.png" />
+          </div>
+          <div class="nav-option">
+            <ul>
+              <a href="/"><li>Home</li></a>
+              <a href="/corporate"><li>Corporate</li></a>
+              <a href="/stays"><li>Hatke Stays</li></a>
+              <a href="/blog"><li>Stories</li></a>
+              <li>Contact</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="search-header margin-top-78">
+        <div class="header-wrapper">
+          <div class="left-header">
+            <div class="header-menu">
+              <i class="fa fa-menu"></i>
+            </div>
+            <div class="search-widget">
+              <div class="destination">
+                  <label class="dest-label">Destination</label>
+                  <input type="text" name="destination" class="dest-input" id="destination"/>
+                  <div class="dest-options-popup" id="options">
+                    <div class="dest-options" id="dest-options">
+                      <ul class="option-list">
+                        <li><span>Popular Destinations</span>
+                        <li class="list-dest"><button>Goa</span></li>
+                        <li class="list-dest"><button>Munnar</span></li>
+                        <li class="list-dest"><button>Ooty</span></li>
+                        <li class="list-dest"><button>Coorg</span></li>
+                        <li class="list-dest"><button>Shimla</span></li>
+                      </ul>
+                    </div>
+                    <div class="overlay bg-white-transparent"></div>
+                  </div>
+              </div>
+              <div class="destination date-picker">
+                <label class="dest-label">Check-In</label>
+                <input type="text" class="dest-input" id="check-in" />
+              </div>
+              <div class="destination date-picker">
+                <label class="dest-label">Check-Out</label>
+                <input type="text" class="dest-input" id="check-out"/>
+              </div>
+              <div class="destination date-picker">
+                <label class="dest-label">Guests</label>
+                <input type="text" class="dest-input" id="guests" />
+                <div class="dest-options-popup" id="guest-popup-options">
+                  <div class="dest-options" id="guest-options">
+                    <div class="adults">Adults</div>
+                    <div class="guests">
+                      <ul class="guest-list">
+                        <li class="list-guest"><button>1</span></li>
+                        <li class="list-guest"><button>2</span></li>
+                        <li class="list-guest"><button>3</span></li>
+                        <li class="list-guest"><button>4</span></li>
+                        <li class="list-guest"><button>5</span></li>
+                        <li class="list-guest"><button>6</span></li>
+                        <li class="list-guest"><button>7</span></li>
+                        <li class="list-guest"><button>8</span></li>
+                        <li class="list-guest"><button>9</span></li>
+                        <li class="list-guest"><button>10</span></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="overlay bg-white-transparent"></div>
+                </div>
+              </div>
+              <div class="search">
+                <button class="btn-search">Search</button>
+              </div>
+            </div>
+          </div>
+          <div class="right-header"></div>
+        </div>
+      </div>
+    </div>
+    <div class="view-container">
+      <div class="view-wrapper">
+        <!--<div class="view-left-container"></div>-->
+        <div class="view-right-container">
+          <div class="view-wrapper">
+            {{#each stay}}
+              <div class="stay-panel">
+                <div class="panel-body">
+                  <div class="panel-image-holder">
+                    <img src={{this.imagePath}} />
+                  </div>
+                  <div class="panel-content-holder">
+                    <div class="panel-content">
+                      <h4>{{this.name}}</h4>
+                      <p>{{this.location}}</p>
+                      <p class="activities">Activities Included : </p>
+                      <ul class="activity-list">
+                          <li>{{#each activities}}
+                            <div class="circle-icon">
+                              <i class="fa fa-circle"></i>
+                            </div>{{this}}</li>
+                        {{/each}}
+                      </ul>
+                    </div>
+                    <div class="booking-info">
+                      <div class="price">&#8377;1200</div>
+                      <div class="per-person">Per Person</div>
+                      <div class="book-button">
+                        <button class="btn-search">Book</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-container">
+      <div class="footer-wrapper">
+        <div class="help">
+          <div class="help-title">
+            <h4>Need Help?</h4>
+          </div>
+          <div class="help-content">
+            <ul>
+              <li><i class="fa fa-phone"></i><span style="margin-left:5px"></span>+91-8010209886</li>
+              <li><i class="fa fa-mail"></i><span style="margin-left:5px"></span>triposse@gmail.com</li>
+            </ul>
+          </div>
+        </div>
+        <div class="help">
+          <div class="help-title">
+            <h4>About</h4>
+          </div>
+          <div class="help-content">
+            <ul>
+              <li><a href="#"><span style="margin-left:5px"></span>About us</a></li>
+              <li><a href="#"><span style="margin-left:5px"></span>FAQ</a></li>
+              <li><a href="#"><span style="margin-left:5px"></span>Terms & Conditions</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="help">
+          <div class="help-title">
+            <h4>Discover</h4>
+          </div>
+          <div class="help-content">
+            <ul>
+              <li><a href="#"><span style="margin-left:5px"></span>Blog</a></li>
+              <li><a href="#"><span style="margin-left:5px"></span>Tour guide</a></li>
+              <li><a href="#"><span style="margin-left:5px"></span>Gallery</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="share">
+        <div class="content-wrapper" style="margin-top: 20px; width: 400px;">
+          <ul style="list-style:none; text-align:center; padding:0;">
+            <a href="https://www.facebook.com/triposse/" target="_blank"><li class="round-icon"><i class="fa fa-facebook-squared"></i></li></a>
+            <a href="https://twitter.com/Triposse2" target="_blank"><li class="round-icon"><i class="fa fa-twitter"></i></li></a>
+            <a href="https://www.instagram.com/go_triposse/?hl=en" target="_blank"><li class="round-icon"><i class="fa fa-instagram"></i></li></a>
+          </ul>
+          <div style="text-align: center;">
+            <p>&#169; 2017 <span class="tnc">Triposse</span> All Rights Reserved</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="/">
+    <title>Triposse</title>
+    <link rel='stylesheet' href='js/vendor/bootstrap/dist/css/bootstrap.min.css'/>
+    <link href="https://fonts.googleapis.com/css?family=Catamaran|Crimson+Text|Dosis|Inconsolata|Josefin+Sans|Source+Serif+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Manuale" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/main.min.css'/>
+    <link rel='stylesheet' href='/stylesheets/font.css'/>
+
+    <script src="js/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.10&appId=815467568621744";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  <div class="main">
+    <div class="signin-modal" id="signin-modal">
+      <div class="signin-popup popup-ctr">
+        <div class="login-heading">
+          <h3>Login Into Your Account</h3>
+          <div class="modal-close" id="popup-close"><i class="fa fa-cancel"></i></div>
+        </div>
+        <div class="left-signin-wrapper">
+            <form class='login-form' id="login-form">
+              <div class="flex-row">
+                <input id="email" name="email" class='lf--input' placeholder='Email' type='text' required="">
+              </div>
+              <div class="flex-row">
+                <input id="password" name="password" class='lf--input' placeholder='Password' type='password' required="">
+              </div>
+              <p class="invalid-user" id="invalid-user">Invalid username/password</p>
+              <a class='lf--forgot' href='#'>Forgot password?</a>
+              <input class='lf--submit' id='btn-login' type='submit' value='LOGIN'>
+              <input class='lf--submit' type='submit' value='SIGNUP'>
+            </form>
+            <script type="text/javascript">
+              $(document).ready(function(){
+                var loginForm = $('#login-form');
+                var invalidUser = $('#invalid-user');
+                loginForm.on('submit', function(e){
+                  e.preventDefault();
+                  var data = $(this).serialize();
+                  $.get('/user/login', data, function(result){
+                    if(result.valid == true){
+                      window.location.href += ''
+                    }else{
+                      invalidUser.css({
+                        display: 'block'
+                      });
+                    }
+                  });
+                });
+              });
+            </script>
+
+        </div>
+        <div class="right-signin-wrapper">
+          <div class="login-button">
+            <a href="/auth/facebook"><button class="loginBtn loginBtn--facebook">
+              Login with Facebook
+            </button></a>
+            <a href="/auth/google"><button class="loginBtn loginBtn--google">
+              Login with Google
+            </button></a>
+          </div>
+        </div>
+        <div class="lf--or">Or</div>
+      </div>
+      <div class="overlay"></div>
+    </div>
+    <div class="header-class">
+      <div class="navigation bg-transparent">
+        <div class="header-top">
+          <div class="phone-no"><i class="fa fa-phone"></i>+91-8010209886</div>
+          <div class="wishlist">
+            <a href="https://www.facebook.com/triposse/" target="_blank"><span class="header-share"><i class="fa fa-facebook-squared"></i></span></a>
+            <a href="https://twitter.com/Triposse2" target="_blank"><span class="header-share"><i class="fa fa-twitter"></i></span></a>
+            <a href="https://www.instagram.com/go_triposse/?hl=en" target="_blank"><span class="header-share"><i class="fa fa-instagram"></i></span></a>
+            {{#if user}}
+              <a href="/user/logout"><button class="button-main">Hi, {{name}}</button></a>
+            {{else}}
+              <button class="button-main" id="btn-signin">Sign in</button>
+            {{/if}}
+          </div>
+        </div>
+        <div class="navigation-wrapper">
+          <div class="logo">
+            <img src="../images/logo/final2.png" />
+          </div>
+          <div class="nav-option">
+            <ul>
+              <a href="/"><li>Home</li></a>
+              <a href="/corporate"><li>Corporate</li></a>
+              <a href="/stays"><li>Hatke Stays</li></a>
+              <a href="/blog"><li>Stories</li></a>
+              <li>Contact</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="site-container">
+      <div class="image-slider">
+        <div class="image-holder-wrapper" >
+          <div class="image-holder bg-first">
+            <div class="carousel">
+              <ul class="slides" id="sliding-text">
+                <li>
+                  <div class="image-title">
+                    <h2>TRAVEL DIFFERENTLY</h2>
+                  </div>
+                </li>
+                <li>
+                  <div class="image-title">
+                    <h2>LEARN WHILE YOU TRAVEL</h2>
+                  </div>
+                </li>
+                <li>
+                  <div class="image-title">
+                    <h2>THEME BASED TRIPS</h2>
+                  </div>
+                </li>
+                <li>
+                  <div class="image-title">
+                    <h2>EXPERIENCES THAT MATTER</h2>
+                  </div>
+                </li>
+                <li>
+                  <div class="image-title">
+                    <h2>BUDGET STAYS FOR STUDENTS</h2>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hatke-container">
+        <div class="hatke-title">
+          <h2><span>HATKE</span> STAYS</h2>
+          <p>Go Hatke, See Hatke, Travel Hatke.</p>
+        </div>
+        <div class="hatke-stay-row">
+          {{#each hatkeStays}}
+            <div class="stay-container">
+              <div class="stay-container-header">
+                <h3>{{this.name}}</h3>
+                <p>{{this.description}}</p>
+              </div>
+              <div class="accordion">
+                <div class="accordion-section">
+                  <div class="accordion-section-content" style="background-image: url('{{this.imagePath}}');">
+                  </div>
+                  <div class="stay-content">
+                    <div class="stay-content-logo">
+                      <i class="fa fa-location"></i>
+                    </div>
+                    <div class="stay-content-heading">
+                      <h4>{{this.location}}</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+        <div class="button-row">
+          <div class="button-holder">
+            <a href="/stays"><button class="button-show">View All</button></a>
+          </div>
+        </div>
+      </div>
+      <div class="slider-container parallax">
+      <div class="fact-row" id="fact-row">
+        <div class="fact-travellers fact-margin">
+          <div class="fact-image-holder">
+            <img src="/images/Hiker-512.png" />
+          </div>
+          <div class="fact-content-holder">
+            <h4><span id="traveller">124</span>+ Travellers</h4>
+          </div>
+        </div>
+        <div class="fact-destinations fact-margin">
+          <div class="fact-image-holder padding-25">
+            <img src="/images/location5-512.png" />
+          </div>
+          <div class="fact-content-holder">
+            <h4><span id="destinations">20</span>+ Destinations</h4>
+          </div>
+        </div>
+        <div class="fact-theme fact-margin">
+          <div class="fact-image-holder">
+            <img src="/images/fact-theme.png" />
+          </div>
+          <div class="fact-content-holder">
+            <h4><span id="themes">30</span>+ Unique Themes</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="corporate-container">
+        <div class="corporate-head-title">
+          <h2>THEMES</h2>
+          <p>Engage your team</p>
+        </div>
+        <div class="corporate-row">
+          <div class="corporate-wrapper">
+            <div class="corporate-intro">
+              <div class="cp-image-holder">
+                <img src="../images/corporate/unconventional.png">
+              </div>
+              <div class="cp-intro-holder">
+                <p>Unconventional employee engagement activities</p>
+              </div>
+            </div>
+            <div class="corporate-intro">
+              <div class="cp-image-holder">
+                <img src="../images/corporate/socially.png">
+              </div>
+              <div class="cp-intro-holder">
+                <p>Tailor made end-to-end travel planning for dynamic team trips</p>
+              </div>
+            </div>
+            <div class="corporate-intro">
+              <div class="cp-image-holder">
+                <img src="../images/corporate/skills.png">
+              </div>
+              <div class="cp-intro-holder">
+                <p>Promote leadership and cohesiveness through integrated itineraries</p>
+              </div>
+            </div>
+            <div class="corporate-intro">
+              <div class="cp-image-holder">
+                <img src="../images/corporate/eco-friendly.png">
+              </div>
+              <div class="cp-intro-holder">
+                <p>Do your bit for the society through our CSR theme trips</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="button-row">
+          <div class="button-holder">
+            <a href="/corporate"><button class="button-show">Discover More</button></a>
+          </div>
+        </div>
+      </div>
+      <div class="story-container">
+        <div class="hatke-title">
+          <h2><span>Triposse</span> Stories</h2>
+          <p>The connection that travellers make</p>
+        </div>
+        <div class="content-wrapper">
+          <a href="/blog/add"><div class="story-holder add-story-holder">
+            <div class="plus-sign">
+              <span>+</span>
+            </div>
+            <div class="add-story">
+              Add your story
+            </div>
+          </div></a>
+          {{#each stories}}
+            <div class="story-holder">
+              <div class="story-image-holder">
+                <img src={{this.image}} onError="this.onerror=null; this.src='../images/not-found.jpg';" />
+              </div>
+              <div class="story-image-title">
+                <p> {{this.title}}</p>
+              </div>
+              <div class="story-share">
+                <div class="fb-share-button" data-href="http://www.triposse.com/blog" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.triposse.com%2Fblog&amp;src=sdkpreparse">Share</a></div>
+              </div>
+            </div>
+            {{/each}}
+        </div>
+      </div>
+    </div>
+    <div class="footer-container">
+      <div class="footer-wrapper">
+        <div class="help">
+          <div class="help-title">
+            <h4>Need Help?</h4>
+          </div>
+          <div class="help-content">
+            <ul>
+              <li><i class="fa fa-phone"></i><span style="margin-left:5px"></span>+91-8010209886</li>
+              <li><i class="fa fa-mail"></i><span style="margin-left:5px"></span>triposse@gmail.com</li>
+            </ul>
+          </div>
+        </div>
+        <div class="help">
+          <div class="help-title">
+            <h4>About</h4>
+          </div>
+          <div class="help-content">
+            <ul>
+              <li><a href="#"><span style="margin-left:5px"></span>About us</a></li>
+              <li><a href="#"><span style="margin-left:5px"></span>FAQ</a></li>
+              <li><a href="#"><span style="margin-left:5px"></span>Terms & Conditions</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="help">
+          <div class="help-title">
+            <h4>Discover</h4>
+          </div>
+          <div class="help-content">
+            <ul>
+              <li><a href="#"><span style="margin-left:5px"></span>Blog</a></li>
+              <li><a href="#"><span style="margin-left:5px"></span>Tour guide</a></li>
+              <li><a href="#"><span style="margin-left:5px"></span>Gallery</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="share">
+        <div class="content-wrapper" style="margin-top: 20px; width: 400px;">
+          <ul style="list-style:none; text-align:center; padding:0;">
+            <a href="https://www.facebook.com/triposse/" target="_blank"><li class="round-icon"><i class="fa fa-facebook-squared"></i></li></a>
+            <a href="https://twitter.com/Triposse2" target="_blank"><li class="round-icon"><i class="fa fa-twitter"></i></li></a>
+            <a href="https://www.instagram.com/go_triposse/?hl=en" target="_blank"><li class="round-icon"><i class="fa fa-instagram"></i></li></a>
+          </ul>
+          <div style="text-align: center;">
+            <p>&#169; 2017 <span class="tnc">Triposse</span> All Rights Reserved</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

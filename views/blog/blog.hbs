@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <base href="/">
+  <title>Blog-Triposse</title>
+  <link rel='stylesheet' href='js/vendor/bootstrap/dist/css/bootstrap.min.css'/>
+  <link rel="stylesheet" href="/stylesheets/main.min.css">
+  <link rel='stylesheet' href='/stylesheets/font.css'/>
+  <script src="js/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="/js/blog.js"></script>
+</head>
+<body>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.10&appId=815467568621744";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  <div class="page-container">
+    <div class="header">
+      <div class="navigation fix-position-top">
+        <div class="navigation-wrapper">
+          <div class="logo">
+            <img src="../images/logo/final2.png" />
+          </div>
+          <div class="nav-option">
+            <ul>
+              <a href="/"><li>Home</li></a>
+              <a href="/corporate"><li>Corporate</li></a>
+              <a href="/stays"><li>Hatke Stays</li></a>
+              <a href="/blog"><li>Stories</li></a>
+              <li>Contact</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="site-container">
+      <div class="content-wrapper">
+          <div class="blog-content" id="blog-content">
+            {{#each result}}
+            <div class="content">
+              <div class="content-heading" id={{this._id}}>
+                <h2 class="h2-heading">{{this.title}}</h2>
+                <p class="post-date">{{this.date}}</p>
+              </div>
+              <div class="sliding-images">
+                <div class="arrow-container">
+                  <div class="left-arrow" id="left-arrow">
+                    <i class="fa fa-left-open"></i>
+                  </div>
+                  <div class="right-arrow" id="right-arrow">
+                    <i class="fa fa-right-open"></i>
+                  </div>
+                </div>
+                <div class="content-image-holder">
+                  {{#each imagePath}}
+                    <div class="blog-image">
+                      <img src={{this}} class="post-image" onError="this.onerror=null; this.src='../images/not-found.jpg';"/>
+                    </div>
+                  {{/each}}
+                </div>
+              </div>
+              <div class="content-story-holder" id="story-holder">
+                <p class="story">{{this.descp}}</p>
+                <p id="hidden-story" style="visibility: hidden; height: 0px">{{this.content}}</p>
+              </div>
+              <div class="read-button">
+                <div class="fb-share">
+                  <div class="fb-share-button" data-href="http://www.triposse.com/blog" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.triposse.com%2Fblog&amp;src=sdkpreparse">Share</a></div>
+                </div>
+                <span class="read-more">Read More</span>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+          <div class="side-wrapper">
+            <div class="recent-post padding-margin-10 border-top-bottom">
+              <h3 class="h3-style">RECENT POSTS</h3>
+
+                {{#each recent}}
+                  <div class="recent-post-content" data-id={{this.id}}>
+                    <div class="img-holder">
+                      <img src={{this.imagePath}} class="recent-post-image" onError="this.onerror=null; this.src='../images/not-found.jpg';"/>
+                    </div>
+                    <div class="post-text-holder">
+                      <p style="font-size: 14px;">{{this.short}}</p>
+                      <p style="font-size: 12px;">{{this.date}}</p>
+                    </div>
+                  </div>
+                {{/each}}
+              </div>
+            <div class="search-tags padding-margin-10 border-top-bottom">
+              <h3 class="h3-style">SEARCH BY TAGS</h3>
+              <div class="tag-content">
+                {{#each tags}}
+                  <p class="tag">{{this._id}}</p>
+                {{/each}}
+              </div>
+              <div class="padding-margin-10">
+                <img src="/images/blog/tag-box.png" class="tag-image" />
+              </div>
+            </div>
+            <div class="follow padding-margin-10 border-top-bottom">
+              <h3 class="h3-style">FOLLOW US</h3>
+              <div class="share-fb share-image">
+                <a href="https://www.facebook.com/triposse" target="_blank">
+                  <i class="fa fa-facebook-squared"></i>
+                </a>
+              </div>
+              <div class="share-twitter share-image">
+                <a href="/blog">
+                  <i class="fa fa-twitter"></i>
+                </a>
+              </div>
+              <div class="share-insta share-image">
+                <a href="https://www.instagram.com/go_triposse/?hl=en" target="_blank">
+                  <i class="fa fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="footer-container">
+      <div class="footer-wrapper">
+        <div class="help">
+          <div class="help-title">
+            <h4>Need Help?</h4>
+          </div>
+          <div class="help-content">
+            <ul>
+              <li><i class="fa fa-phone"></i><span style="margin-left:5px"></span>+91-8010209886</li>
+              <li><i class="fa fa-mail"></i><span style="margin-left:5px"></span>triposse@gmail.com</li>
+            </ul>
+          </div>
+        </div>
+        <div class="help">
+          <div class="help-title">
+            <h4>About</h4>
+          </div>
+          <div class="help-content">
+            <ul>
+              <li><a href="#"><span style="margin-left:5px"></span>About us</a></li>
+              <li><a href="#"><span style="margin-left:5px"></span>FAQ</a></li>
+              <li><a href="#"><span style="margin-left:5px"></span>Terms & Conditions</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="help">
+          <div class="help-title">
+            <h4>Discover</h4>
+          </div>
+          <div class="help-content">
+            <ul>
+              <li><a href="#"><span style="margin-left:5px"></span>Blog</a></li>
+              <li><a href="#"><span style="margin-left:5px"></span>Tour guide</a></li>
+              <li><a href="#"><span style="margin-left:5px"></span>Gallery</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="share">
+        <div class="content-wrapper" style="margin-top: 20px; width: 400px;">
+          <ul style="list-style:none; text-align:center; padding:0;">
+            <a href="https://www.facebook.com/triposse/" target="_blank"><li class="round-icon"><i class="fa fa-facebook-squared"></i></li></a>
+            <a href="https://twitter.com/Triposse2" target="_blank"><li class="round-icon"><i class="fa fa-twitter"></i></li></a>
+            <a href="https://www.instagram.com/go_triposse/?hl=en" target="_blank"><li class="round-icon"><i class="fa fa-instagram"></i></li></a>
+          </ul>
+          <div style="text-align: center;">
+            <p>&#169; 2017 <span class="tnc">Triposse</span> All Rights Reserved</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

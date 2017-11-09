@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <base href="/">
+  <title>Gallery-Triposse</title>
+  <link rel="stylesheet" href="/stylesheets/blog.css">
+  <link rel='stylesheet' href='/stylesheets/font.css'/>
+  <script src="js/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="/js/blog.js"></script>
+</head>
+<body>
+  <div class="site-container">
+    <div class="header">
+      <div class="header-container">
+        <div class="header-logo">
+          <h1>Triposse</h1>
+          <p><span class="red">Go</span> Hatke. <span class="red">See</span> Hatke. <span class="red">Stay</span> Hatke.</p>
+        </div>
+        <div class="header-nav">
+          <ul class="nav-list">
+            <li id="nav-blog"><a href="/blog">Blog</a></li>
+            <li id="nav-about">About</li>
+            <li id="nav-contact">Contact</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="main">
+      <div class="main-wrapper">
+        <div class="gallery-content">
+          {{#each data}}
+            <div class="gallery-container">
+              <div class="gallery-heading">
+                <h2 class="h2-heading">{{this.title}}</h2>
+              </div>
+              <div class="gallery-image-container">
+                {{#each imagePath}}
+                  <div class="gallery-image-holder">
+                    <img src="{{this}}" class="gallery-image" />
+                  </div>
+                {{/each}}
+              </div>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    <div class="footer-container">
+      <div class="content-wrapper footer-wrapper">
+        <div class="help">
+          <div class="help-title">
+            <h4 class="font-white">Need Help?</h4>
+          </div>
+          <div class="help-content">
+            <ul>
+              <li><i class="icon icon-phone"></i><span style="margin-left:5px"></span>+91-8010209886</li>
+              <li><i class="icon icon-mail"></i><span style="margin-left:5px"></span>triposse@gmail.com</li>
+            </ul>
+          </div>
+        </div>
+        <div class="help">
+          <div class="help-title">
+            <h4 class="font-white">About</h4>
+          </div>
+          <div class="help-content">
+            <ul>
+              <li><span style="margin-left:5px"></span>About us</li>
+              <li><span style="margin-left:5px"></span>FAQ</li>
+              <li><span style="margin-left:5px"></span>Terms & Conditions</li>
+            </ul>
+          </div>
+        </div>
+        <div class="help">
+          <div class="help-title">
+            <h4 class="font-white">Discover</h4>
+          </div>
+          <div class="help-content">
+            <ul>
+              <li><a href="/blog"><span style="margin-left:5px"></span>Blog</a></li>
+              <li><a href=""><span style="margin-left:5px"></span>Tour guide</a></li>
+              <li><a href="/gallery"><span style="margin-left:5px"></span>Gallery</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="share">
+        <div class="content-wrapper font-white" style="margin-top: 20px; width: 400px;">
+          <ul style="list-style:none; text-align:center; padding:0;">
+            <li class="round-icon"><i class="icon icon-facebook"></i></li>
+            <li class="round-icon"><i class="icon icon-twitter"></i></li>
+            <li class="round-icon"><i class="icon icon-gplus"></i></li>
+          </ul>
+          <div style="text-align: center;">
+            <p>&#169;Triposse 2017</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
