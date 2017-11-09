@@ -68,7 +68,6 @@ public/uploads/*
 
 #Config files
 config/auth.config.js
-config/db.config.js
 
 #Assets
 assets
