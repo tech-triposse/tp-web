@@ -67,7 +67,6 @@ public/uploads/*
 .DS_STORE
 
 #Config files
-config/auth.config.js
 
 #Assets
 assets
