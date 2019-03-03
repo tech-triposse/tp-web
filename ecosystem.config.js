@@ -6,11 +6,11 @@ module.exports = {
   deploy: {
     production: {
       user: 'ubuntu',
-      host: 'ec2-13-126-205-91.ap-south-1.compute.amazonaws.com',
-      key: '~/.ssh/triposse.pem',
+      host: 'ec2-13-234-59-206.ap-south-1.compute.amazonaws.com',
+      key: '~/.ssh/web.pem',
       ref: 'origin/master',
       repo: 'git@github.com:triposse/tp-web.git',
-      path: '/home/ubuntu/triposse-server',
+      path: '/home/ubuntu/code',
       'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js'
     }
   }
